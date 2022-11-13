@@ -1,0 +1,28 @@
+﻿@model MessagingApp.UI.ViewModels.HomeIndexViewModel
+
+@foreach (var roomItem in Model.Rooms)
+{
+    <a href="javascript:;"
+   class="list-group-item list-group-item-action @(roomItem.Id == Model.SelectedRoomId ? "active" : "")"
+   onclick="chat.room.getRoomMessages(this);"
+   data-roomid="@roomItem.Id"
+   data-joinned="@Model.UserRooms.Any(x => x.RoomId == roomItem.Id).ToString().ToLower()">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">@roomItem.Name</h5>
+            <small>
+                @if (Model.UserRooms.Any(x => x.RoomId == roomItem.Id))
+                {
+                    <b>Joinned!</b>
+                }
+                else
+                {
+                    <b>Not Joinned!</b>
+                }
+            </small>
+        </div>
+    </a>
+}
+
+<a href="javascript:;" onclick="chat.room.add();" class="list-group-item list-group-item-action text-center">
+    <h5 class="my-1">Create A New Room</h5>
+</a>

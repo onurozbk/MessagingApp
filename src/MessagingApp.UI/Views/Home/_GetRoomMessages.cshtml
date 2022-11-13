@@ -1,0 +1,35 @@
+﻿@model MessagingApp.UI.ViewModels.HomeIndexViewModel
+
+@if (!Model.IsJoinned)
+{
+    <h5>
+        You have to join room to message!
+    </h5>
+    <a href="javascript:;" onclick="chat.room.joinToRoom(this)" data-roomid="@Model.SelectedRoomId">Join Room</a>
+}
+else
+{
+    if (!Model.RoomMessages.Any())
+    {
+        <h5>
+            There are no messages!
+        </h5>
+    }
+    else
+    {
+        foreach (var message in Model.RoomMessages)
+        {
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                        <h5 class="">@message.SaveUser</h5>
+                        <small class="text-muted">@message.SaveDate.ToString("dd.MM.yyyy HH:mm")</small>
+                    </div>
+                    <p class="card-text">
+                        @message.Message
+                    </p>
+                </div>
+            </div>
+        }
+    }
+}

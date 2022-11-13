@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  backend:
+
+services:
+  mongodb:
+    container_name: mongo-db
+    image: mongo
+    #restart: always
+    ports:
+      - 18005:27017
+    networks:
+      - backend
+
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - 18006:6379
+    networks:
+      - backend
+
+  messagingapp.ui:
+    image: ${DOCKER_REGISTRY-}messagingappui
+    build:
+      context: .
+      dockerfile: src/MessagingApp.UI/Dockerfile
+    ports:
+      - 18007:80
+    networks:
+      - backend
+    environment:
+      - DB_HOST=mongodb
+      - DB_NAME=chatapp
+      - REDIS_CONNECTION=redis

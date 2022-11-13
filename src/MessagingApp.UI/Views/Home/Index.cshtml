@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="chat-message-wrapper">
+            <div class="chat-message-history">
+                <h1>Please Select A Chat Group!</h1>
+            </div>
+            <hr />
+            <form>
+                <div class="my-3">
+                    <textarea class="form-control" id="message-from-input" rows="3" placeholder="Type your message...."></textarea>
+                </div>
+                <a href="javascript:;" class="btn btn-primary" onclick="chat.message.add(this);">Send</a>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="list-group" id="chat-rooms-wrapper">
+        </div>
+    </div>
+</div>
+
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+                    }
+
+    @section Scripts{
+    <script type="text/javascript" src="~/js/chat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+                }
