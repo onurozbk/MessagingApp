@@ -13,11 +13,5 @@ namespace MessagingApp.UI.Hubs
         {
             await Clients.All.SendAsync("GetRoomMessage");
         }
-
-        //public async Task SendPushHelp(string helpguid, string message)
-        //{
-        //    await Groups.AddToGroupAsync(Context.ConnectionId, helpguid);
-        //    await Clients.Group(helpguid).SendAsync("Send", message);
-        //}
     }
 }
