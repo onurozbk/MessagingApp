@@ -7,7 +7,6 @@ services:
   mongodb:
     container_name: mongo-db
     image: mongo
-    #restart: always
     ports:
       - 18005:27017
     networks:
